@@ -1,5 +1,13 @@
 const express = require("express");
 const app = express();
+const mongoose = require("mongoose");
+
+mongoose
+  .connect("mongodb://localhost:27017/Ecommerce")
+  .then((res) => {
+    console.log("Mongoose connection successful");
+  })
+  .catch("Mongoose Connection failed");
 
 const PORT = 8080;
 
