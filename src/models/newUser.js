@@ -9,6 +9,7 @@ const userSchema = new mongoose.Schema(
       min: 3,
       max: 30,
     },
+
     lastName: {
       type: String,
       required: true,
@@ -24,6 +25,7 @@ const userSchema = new mongoose.Schema(
       index: true,
       lowercase: true,
     },
+
     email: {
       type: String,
       required: true,
@@ -31,14 +33,17 @@ const userSchema = new mongoose.Schema(
       unique: true,
       lowercase: true,
     },
+
     hash_password: {
       type: String,
       required: true,
     },
+
     contactNumber: {
       type: String,
     },
   },
+
   { timestamps: true }
 );
 

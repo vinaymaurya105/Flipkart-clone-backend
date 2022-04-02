@@ -14,6 +14,9 @@ const PORT = 8080;
 app.get("/", (req, res) => {
   res.send("Response You are Seing is written in get ");
 });
+app.post("/", (req, res) => {
+  res.send("Post response ");
+});
 
 app.listen(PORT, () => {
   console.log(`SERVER STARTED AT PORT ${PORT}`);
