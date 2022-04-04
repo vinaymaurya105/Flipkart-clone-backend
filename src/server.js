@@ -1,6 +1,16 @@
 const express = require("express");
 const app = express();
+const env = require("dotenv");
 const mongoose = require("mongoose");
+
+//environment variable
+env.config();
+
+// middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// CONNECTION WITH DATABASE
 
 mongoose
   .connect("mongodb://localhost:27017/Ecommerce")
@@ -9,15 +19,14 @@ mongoose
   })
   .catch("Mongoose Connection failed");
 
-const PORT = 8080;
+//IMPORT COMPONENTS FILES
 
-app.get("/", (req, res) => {
-  res.send("Response You are Seing is written in get ");
-});
-app.post("/", (req, res) => {
-  res.send("Post response ");
-});
+// routes
 
-app.listen(PORT, () => {
-  console.log(`SERVER STARTED AT PORT ${PORT}`);
+const userRoutes = require("./router/user");
+
+app.use("/api", userRoutes);
+
+app.listen(process.env.PORT, () => {
+  console.log(`SERVER STARTED AT PORT ${process.env.PORT}`);
 });
