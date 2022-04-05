@@ -1,11 +1,15 @@
 const express = require("express");
 
-const { signup } = require("../controller/autho");
+const { signup, signin, userSignin } = require("../controller/autho");
 const router = express.Router();
 
 router.post("/signup", signup);
 
-router.post("/signin", (req, res) => {});
+router.post("/signin", signin);
+
+router.post("/profile", userSignin, (req, res) => {
+  res.status(201).json({ user: "user" });
+  
+});
 
 module.exports = router;
-router.post("/signup", signup);
