@@ -19,8 +19,6 @@ mongoose
   })
   .catch("Mongoose Connection failed");
 
-//IMPORT COMPONENTS FILES
-
 // routes
 
 const userRoutes = require("./router/user");

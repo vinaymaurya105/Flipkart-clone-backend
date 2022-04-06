@@ -45,6 +45,7 @@ exports.signin = (req, res) => {
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
+
         const { _id, firstName, lastName, email, fullName } = user;
 
         res.status(200).json({
