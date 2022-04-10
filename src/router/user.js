@@ -1,15 +1,22 @@
 const express = require("express");
 
-const { signup, signin, userSignin } = require("../controller/autho");
+// validate new user field
+const {
+  validateSignupRequest,
+  isRequestValid,
+  validateSigninRequest,
+} = require("../validators/validator");
 
 const router = express.Router();
 
-router.post("/signup", signup);
+const { signup, signin, userSignin } = require("../controller/autho");
 
-router.post("/signin", signin);
+router.post("/signup", validateSignupRequest, isRequestValid, signup);
 
-router.post("/profile", userSignin, (req, res) => {
-  res.status(201).json({ user: "user" });
-});
+router.post("/signin", validateSigninRequest, isRequestValid, signin);
+
+// router.post("/profile", userSignin, (req, res) => {
+//   res.status(201).json({ user: "user" });
+// });
 
 module.exports = router;

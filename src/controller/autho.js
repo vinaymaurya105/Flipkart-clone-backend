@@ -1,7 +1,6 @@
 const jwt = require("jsonwebtoken");
 
 //import model
-
 const newUser = require("../models/newUser");
 
 exports.signup = (req, res) => {
