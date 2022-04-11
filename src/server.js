@@ -10,6 +10,11 @@ env.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+// routes
+
+const userRoutes = require("./router/user");
+const categoryRoutes = require("./router/category");
+
 // CONNECTION WITH DATABASE
 
 mongoose
@@ -19,11 +24,8 @@ mongoose
   })
   .catch("Mongoose Connection failed");
 
-// routes
-
-const userRoutes = require("./router/user");
-
 app.use("/api", userRoutes);
+app.use("/api", categoryRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`SERVER STARTED AT PORT ${process.env.PORT}`);
