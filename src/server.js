@@ -14,6 +14,8 @@ app.use(express.json());
 
 const userRoutes = require("./router/user");
 const categoryRoutes = require("./router/category");
+const cartRoutes = require("./router/cart");
+const productRoutes = require("./router/product");
 
 // CONNECTION WITH DATABASE
 
@@ -26,6 +28,8 @@ mongoose
 
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
+app.use("/api", cartRoutes);
+app.use("/api", productRoutes);
 
 app.listen(process.env.PORT, () => {
   console.log(`SERVER STARTED AT PORT ${process.env.PORT}`);

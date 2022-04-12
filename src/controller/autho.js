@@ -39,8 +39,7 @@ exports.signin = (req, res) => {
     if (error) return res.status(404).json({ error });
 
     if (user) {
-      const isPassword = user.authenticate(req.body.password);
-      if (isPassword) {
+      if (user.authenticate(req.body.password)) {
         const token = jwt.sign({ _id: user._id }, process.env.JWT_SECRET, {
           expiresIn: "1h",
         });
