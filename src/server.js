@@ -10,6 +10,13 @@ env.config();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+const cors = require("cors");
+app.use(
+  cors({
+    origin: "*",
+  })
+);
+
 // routes
 
 const userRoutes = require("./router/user");
@@ -30,6 +37,9 @@ app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", cartRoutes);
 app.use("/api", productRoutes);
+app.get("/hello", (req, res) => {
+  res.send("hello");
+});
 
 app.listen(process.env.PORT, () => {
   console.log(`SERVER STARTED AT PORT ${process.env.PORT}`);

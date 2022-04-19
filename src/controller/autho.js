@@ -11,12 +11,13 @@ exports.signup = (req, res) => {
       });
   });
 
-  const { firstName, lastName, email, password } = req.body;
+  const { firstName, lastName, email, password, phone } = req.body;
 
   const _user = new newUser({
     firstName,
     lastName,
     email,
+    phone,
     password,
     userName: Math.random().toString(),
   });
@@ -28,7 +29,7 @@ exports.signup = (req, res) => {
       });
     } else if (data) {
       return res.status(201).json({
-        message: "user registerd successfully",
+        message: "User Registerd Successfully",
       });
     }
   });
@@ -44,11 +45,11 @@ exports.signin = (req, res) => {
           expiresIn: "1h",
         });
 
-        const { _id, firstName, lastName, email, fullName } = user;
+        const { _id, firstName, lastName, email, fullName, phone } = user;
 
         res.status(200).json({
           token,
-          user: { _id, firstName, lastName, email, fullName },
+          user: { _id, firstName, lastName, fullName, email, phone },
         });
       } else {
         return res.status(404).send("Invalid Password");

@@ -12,21 +12,28 @@ const productSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    parentId: {
-      type: String,
-    },
+    // parentId: {
+    //   type: String,
+    // },
     price: {
       type: Number,
       required: true,
     },
-    discription: {
+    quantity: {
+      type: Number,
+      required: true,
+    },
+    description: {
       type: String,
       trim: true,
     },
     offer: { type: String },
-    productPicture: {
-      img: { type: String },
-    },
+    productPictures: [
+      {
+        img: { type: String },
+      },
+    ],
+
     reviwes: [
       {
         userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
@@ -39,40 +46,4 @@ const productSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Products", productSchema);
-
-// const productSchema = new mongoose.Schema(
-//   {
-//     name: {
-//       type: String,
-//       required: true,
-//     },
-//     slug: {
-//       type: String,
-//       required: true,
-//       unique: true,
-//     },
-//     price: {
-//       type: Number,
-//       required: true,
-//     },
-//     discription: {
-//       type: String,
-//       trim: true,
-//     },
-//     offer: { type: String },
-//     productPicture: {
-//       img: { type: String },
-//     },
-//     revies: [
-//       {
-//         userId: mongoose.Schema.Types.ObjectId,
-//         ref: "User",
-//         review: String,
-//       },
-//     ],
-//   },
-//   { timestamps: true }
-// );
-
-// module.exports = mongoose.model("Products", productSchema);
+module.exports = mongoose.model("Product", productSchema);
