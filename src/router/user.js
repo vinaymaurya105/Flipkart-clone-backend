@@ -15,14 +15,10 @@ const {
 
 const router = express.Router();
 
-const { signup, signin, userSignin } = require("../controller/autho");
+const { signup, signin } = require("../controller/autho");
 
 router.post("/signup", validateSignupRequest, isRequestValid, signup);
 
 router.post("/signin", validateSigninRequest, isRequestValid, signin);
-
-// router.post("/profile", userSignin, (req, res) => {
-//   res.status(201).json({ user: "user" });
-// });
 
 module.exports = router;

@@ -1,5 +1,6 @@
 const express = require("express");
 const { createProduct } = require("../controller/product");
+const Product = require("../models/products");
 const multer = require("multer");
 const shortid = require("shortid");
 const path = require("path");
@@ -18,5 +19,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 router.post("/product/create", upload.array("productPicture"), createProduct);
+
+router.get("/products", async (req, res) => {
+  const product = await Product.find({});
+
+  res.send(product);
+});
 
 module.exports = router;
