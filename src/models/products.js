@@ -41,6 +41,11 @@ const productSchema = new mongoose.Schema(
         review: String,
       },
     ],
+    category: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Category",
+      required: true,
+    },
   },
 
   { timestamps: true }

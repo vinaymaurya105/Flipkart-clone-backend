@@ -1,5 +1,8 @@
 const express = require("express");
-const { createProduct } = require("../controller/product");
+const {
+  createProduct,
+  getProductDetailsById,
+} = require("../controller/product");
 const Product = require("../models/products");
 const multer = require("multer");
 const shortid = require("shortid");
@@ -25,5 +28,7 @@ router.get("/products", async (req, res) => {
 
   res.send(product);
 });
+
+router.get("/product/:productId", getProductDetailsById);
 
 module.exports = router;

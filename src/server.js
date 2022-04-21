@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const env = require("dotenv");
 const mongoose = require("mongoose");
+const path = require("path");
 
 //environment variable
 env.config();
@@ -33,6 +34,7 @@ mongoose
   })
   .catch("Mongoose Connection failed");
 
+app.use("/public", express.static(path.join(__dirname, "uploads")));
 app.use("/api", userRoutes);
 app.use("/api", categoryRoutes);
 app.use("/api", cartRoutes);
