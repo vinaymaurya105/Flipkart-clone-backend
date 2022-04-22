@@ -3,7 +3,7 @@ const slugify = require("slugify");
 
 exports.createProduct = (req, res) => {
   // res.status(201).json({ file: req.files, body: req.body });
-  const { name, price, description, category, quantity, offerPrice, offer } =
+  const { name, price, description, category, quantity, offerPrice, rating } =
     req.body;
   let productPictures = [];
 
@@ -22,7 +22,7 @@ exports.createProduct = (req, res) => {
     productPictures,
     category,
     offerPrice,
-    offer,
+    rating,
   });
 
   product.save((error, product) => {
@@ -35,11 +35,12 @@ exports.createProduct = (req, res) => {
 
 exports.getProductDetailsById = (req, res) => {
   const { productId } = req.params;
+
   if (productId) {
     Product.findOne({ _id: productId }).exec((error, product) => {
       if (error) return res.status(400).json({ error });
       if (product) {
-        res.status(200).json({ product });
+        res.status(200).send(product);
       }
     });
   } else {

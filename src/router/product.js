@@ -29,6 +29,6 @@ router.get("/products", async (req, res) => {
   res.send(product);
 });
 
-router.get("/product/:productId", getProductDetailsById);
+router.get("/:productId", getProductDetailsById);
 
 module.exports = router;

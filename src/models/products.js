@@ -12,10 +12,14 @@ const productSchema = new mongoose.Schema(
       required: true,
       unique: true,
     },
-    // parentId: {
-    //   type: String,
-    // },
+    parentId: {
+      type: String,
+    },
     price: {
+      type: Number,
+      required: true,
+    },
+    offerPrice: {
       type: Number,
       required: true,
     },
@@ -27,7 +31,7 @@ const productSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    offer: { type: String },
+    rating: { type: Number },
     productPictures: [
       {
         img: { type: String },
