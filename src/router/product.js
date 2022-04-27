@@ -2,6 +2,7 @@ const express = require("express");
 const {
   createProduct,
   getProductDetailsById,
+  getProductDetailsBycategory,
 } = require("../controller/product");
 const Product = require("../models/products");
 const multer = require("multer");
@@ -30,5 +31,19 @@ router.get("/products", async (req, res) => {
 });
 
 router.get("/:productId", getProductDetailsById);
+router.get("/category/:categoryId", (req, res) => {
+  const { categoryId } = req.params;
+
+  if (categoryId) {
+    Product.find({ category: categoryId }).exec((error, product) => {
+      if (error) return res.status(400).json({ error });
+      if (product) {
+        res.status(200).send(product);
+      }
+    });
+  } else {
+    return res.status(400).json({ error: "Params required" });
+  }
+});
 
 module.exports = router;

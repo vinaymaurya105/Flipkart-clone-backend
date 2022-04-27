@@ -1,5 +1,6 @@
 const Product = require("../models/products");
 const slugify = require("slugify");
+const { startSession } = require("../models/products");
 
 exports.createProduct = (req, res) => {
   // res.status(201).json({ file: req.files, body: req.body });

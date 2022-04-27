@@ -4,6 +4,7 @@ const { addItemToCart } = require("../controller/cart");
 
 const router = express.Router();
 
-router.post("/user/cart/addtocart", requireSignin, addItemToCart);
+router.post("/addtocart", addItemToCart);
+// router.post("/addtocart", requireSignin, addItemToCart);
 
 module.exports = router;
